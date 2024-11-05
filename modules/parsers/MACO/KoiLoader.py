@@ -1,6 +1,6 @@
 from maco.extractor import Extractor
 from maco.model import ExtractorModel as MACOModel
-from cape_parsers.CAPE.community.KoiLoader import RULE_SOURCE, extract_config
+from cape_parsers.CAPE.community.KoiLoader import extract_config
 from modules.parsers.utils import get_YARA_rule
 
 
@@ -22,8 +22,6 @@ class KoiLoader(Extractor):
     last_modified = "2024-10-26"
     sharing = "TLP:CLEAR"
     yara_rule = get_YARA_rule(family)
-
-    yara_rule = RULE_SOURCE
 
     def run(self, stream, matches):
         return convert_to_MACO(extract_config(stream.read()))
